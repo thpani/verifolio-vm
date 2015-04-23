@@ -1,0 +1,40 @@
+{
+    "variables": {
+        "iso_url": "https://mirrors.kernel.org/archlinux/iso/2015.04.01/archlinux-2015.04.01-dual.iso",
+        "iso_checksum": "95122cbbde7252959bcea1c49fd797eb0eb25a4b",
+        "iso_checksum_type": "sha1"
+    },
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "iso_url": "{{user `iso_url`}}",
+            "iso_checksum": "{{user `iso_checksum`}}",
+            "iso_checksum_type": "{{user `iso_checksum_type`}}",
+            "guest_os_type": "ArchLinux_64",
+            "guest_additions_mode": "disable",
+            "http_directory": ".",
+            "boot_command": [
+                "<enter><wait10><wait10><wait10><wait10>",
+                "/usr/bin/curl -O http://{{.HTTPIP}}:{{.HTTPPort}}/install-virtualbox.sh<enter><wait5>",
+                "/usr/bin/curl -O http://{{.HTTPIP}}:{{.HTTPPort}}/poweroff.timer<enter><wait5>",
+                "/usr/bin/bash ./install-virtualbox.sh<enter>"
+            ],
+            "disk_size": 40960,
+            "hard_drive_interface": "sata",
+            "ssh_username": "root",
+            "ssh_password": "vagrant",
+            "ssh_wait_timeout": "60m",
+            "shutdown_command": "systemctl start poweroff.timer",
+            "vboxmanage": [
+              ["modifyvm", "{{.Name}}", "--memory", "2048"],
+              ["modifyvm", "{{.Name}}", "--cpus", "4"]
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "output": "packer_arch_{{.Provider}}.box"
+        }
+    ]
+}
