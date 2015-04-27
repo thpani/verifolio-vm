@@ -1,0 +1,28 @@
+---
+- hosts: all
+  tasks:
+
+  - name: update package list
+    pacman: update_cache=yes
+    sudo: yes
+
+  - name: install packages
+    pacman: name={{ item }}
+    sudo: yes
+    with_items:
+      - zsh
+      - git
+      - mercurial
+      - the_silver_searcher
+      - cmake
+      - ninja
+      - clang
+      - subversion
+      - boost
+
+  - name: create directories
+    file: dest={{ item }} state=directory
+    with_items:
+      - /home/vagrant/bin
+      - /home/vagrant/src
+      - /home/vagrant/results
