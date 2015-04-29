@@ -35,3 +35,17 @@
   - name: checkout svcomp15 benchmarks
     subversion: repo=https://svn.sosy-lab.org/software/sv-benchmarks/tags/svcomp15/
                 dest=/home/vagrant/benchmarks/svcomp15
+
+  - name: clone llvm
+    git: repo=https://github.com/thpani/llvm.git
+         dest=/home/vagrant/src/llvm/
+         version=patches/release_34_nullsucc
+
+  - name: clone clang
+    git: repo=http://llvm.org/git/clang.git
+         dest=/home/vagrant/src/llvm/tools/clang/
+         version=release_34
+
+  - name: clone clang-tools-extra
+    git: repo=https://github.com/thpani/clang-tools-extra.git
+         dest=/home/vagrant/src/llvm/tools/clang/tools/extra/
