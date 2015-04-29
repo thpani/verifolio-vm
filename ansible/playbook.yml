@@ -32,6 +32,7 @@
       - clang
       - subversion
       - boost
+      - /vagrant/ansible/z3-codeplex-4.3.2-1-x86_64.pkg.tar.xz
 
   # uncomment the following to build z3
   #
