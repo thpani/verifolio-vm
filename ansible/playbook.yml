@@ -24,5 +24,6 @@
     file: dest={{ item }} state=directory
     with_items:
       - /home/vagrant/bin
+      - /home/vagrant/benchmarks
       - /home/vagrant/src
       - /home/vagrant/results
