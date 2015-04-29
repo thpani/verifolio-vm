@@ -33,6 +33,32 @@
       - subversion
       - boost
 
+  # uncomment the following to build z3
+  #
+  # - name: "add archlinuxfr repository to pacman"
+  #   lineinfile:
+  #     dest: "/etc/pacman.conf"
+  #     line: "{{ item }}"
+  #   with_items:
+  #     - "[archlinuxfr]"
+  #     - "SigLevel = Never"
+  #     - "Server = http://repo.archlinux.fr/$arch"
+  #   sudo: yes
+  #
+  # - name: install yaourt
+  #   pacman: name=yaourt update_cache=yes
+  #   sudo: yes
+  #
+  # - name: check z3 present
+  #   command: pacman -Q z3-codeplex
+  #   register: packages_presence
+  #   changed_when: False
+  #   failed_when: False
+  #
+  # - name: install z3
+  #   command: yaourt -S --noconfirm z3-codeplex
+  #   when: packages_presence|failed
+
   - name: create directories
     file: dest={{ item }} state=directory
     with_items:
