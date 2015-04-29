@@ -49,3 +49,14 @@
   - name: clone clang-tools-extra
     git: repo=https://github.com/thpani/clang-tools-extra.git
          dest=/home/vagrant/src/llvm/tools/clang/tools/extra/
+
+  - name: create llvm-build dir
+    file: dest=/home/vagrant/src/llvm-build/ state=directory
+
+  - name: cmake
+    command: cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLAGS="-std=c++11" -DLLVM_TARGETS_TO_BUILD="X86;CppBackend" ../llvm/
+             chdir=/home/vagrant/src/llvm-build/
+
+  - name: ninja sloopy
+    command: ninja sloopy
+             chdir=/home/vagrant/src/llvm-build/
