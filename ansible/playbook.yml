@@ -11,6 +11,9 @@
     sudo: yes
     with_items:
       - zsh
+      - vim
+      - tmux
+      - screen
       - git
       - mercurial
       - the_silver_searcher
