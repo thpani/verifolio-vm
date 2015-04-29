@@ -67,7 +67,7 @@
     file: dest=/home/vagrant/src/llvm-build/ state=directory
 
   - name: cmake
-    command: cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLAGS="-std=c++11" -DLLVM_TARGETS_TO_BUILD="X86;CppBackend" ../llvm/
+    command: cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_CXX_FLAGS="-std=c++11 -I/usr/include/z3 -w" -DLLVM_TARGETS_TO_BUILD="X86" -DCMAKE_BUILD_TYPE=Release -DHAVE_SANITIZER_MSAN_INTERFACE_H=0 -Wno-dev ../llvm/
              chdir=/home/vagrant/src/llvm-build/
 
   - name: ninja sloopy
