@@ -27,3 +27,11 @@
       - /home/vagrant/benchmarks
       - /home/vagrant/src
       - /home/vagrant/results
+
+  - name: checkout svcomp14 benchmarks
+    subversion: repo=https://svn.sosy-lab.org/software/sv-benchmarks/tags/svcomp14/
+                dest=/home/vagrant/benchmarks/svcomp14
+
+  - name: checkout svcomp15 benchmarks
+    subversion: repo=https://svn.sosy-lab.org/software/sv-benchmarks/tags/svcomp15/
+                dest=/home/vagrant/benchmarks/svcomp15
